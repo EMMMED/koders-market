@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link, Navigate, Route, Routes } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import api from './lib/api'
+import Card from './Components/CardProduct/index';
+import './App.scss';
+import Product from './Pages/Product';
+
+
 
 function App() {
+  const [allProducts, setAllProducts] = useState({})
+
+    useEffect(async () => {
+        let data = await api.getAllProducts()
+        setAllProducts(data)
+        console.log(data)
+    },[])
+  
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <main>
+      <div className="container">
+        <div className="row">
+          <div className="col-3">
+          <Link to='/' className='nav-link'>
+                  Productos
+                </Link>
+          </div>
+        </div>
+      </div>
+      </main>
+          <Routes>
+            <Route path="/" element={<Product/>}/>
+          </Routes>
     </div>
+
   );
 }
 
