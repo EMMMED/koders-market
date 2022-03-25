@@ -15,17 +15,18 @@ const Product = () => {
     },[])
 
     const inputData = event => {
-        let value = event.target.value
-        let name = event.target.dataset.name
-        console.log(name)
-        console.log(value)
-        setProductMarket({...productMarket, value})
+        let quantity = event.target.value
+        console.log(quantity)
+        setProductMarket({...productMarket, quantity})
     }
 
 
-    const addProductMarket = () => {
-        
-        setProductMarket({...productMarket})
+    const addProductMarket = event => {
+        let name = event.target.dataset.productName
+        let cost = event.target.dataset.productCost
+        let productId = event.target.dataset.productId
+        setProductMarket({...productMarket, name, cost, productId})
+        console.log(productMarket)
     }
 
 
@@ -35,12 +36,12 @@ const Product = () => {
         <div className="container">
             <div className="row">
                 {
-                    Object.keys(allProducts).map(key => {
+                    Object.keys(allProducts).map((key, index) => {
                         return <Card 
-                        key={key}
-                        productData={{...allProducts[key], productId: key}} 
+                        productData={{...allProducts[key], productId: key}}
                         addProductMarket={addProductMarket}
                         inputData={inputData}
+
                         />
                     })
                 }
