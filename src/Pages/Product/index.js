@@ -2,7 +2,8 @@ import { useState, useEffect } from "react"
 import api from '../../lib/api'
 import Card from '../../Components/CardProduct'
 
-const Product = () => {
+const Product = props => {
+    const {token} = props
     // coleccion de Products
     const [allProducts, setAllProducts] = useState({})
     const [productMarket, setProductMarket] = useState({})
@@ -10,8 +11,8 @@ const Product = () => {
 
     useEffect(async () => {
         let data = await api.getAllProducts()
-        setAllProducts(data)
-        console.log(data)
+        setAllProducts(data) 
+        
     },[])
 
     const inputData = event => {
@@ -41,7 +42,7 @@ const Product = () => {
                         productData={{...allProducts[key], productId: key}}
                         addProductMarket={addProductMarket}
                         inputData={inputData}
-
+                        token={token}
                         />
                     })
                 }

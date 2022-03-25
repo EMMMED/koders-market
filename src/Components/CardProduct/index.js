@@ -1,5 +1,5 @@
 const Card = props => {
-    const {addProductMarket, inputData} = props
+    const {addProductMarket, inputData, token} = props
     const {image, name, resume, cost, category, productId} = props.productData
     return (
         <div className="card mb-3 shadow p-3 mb-5 bg-body rounded-3">
@@ -33,7 +33,7 @@ const Card = props => {
               {/* <select name="" id="">Categoria: {category}</select> */}
               <li className='list-group-item'>Categoria: {category}</li>
 
-              <button className="btn btn-dark" onClick={addProductMarket} data-product-name={name} data-product-cost={cost} data-product-id={productId}>Agregar</button>
+              <button className="btn btn-dark" onClick={ addProductMarket } data-product-name={name} data-product-cost={cost} data-product-id={productId}>Agregar</button>
               </div>
 
                 </div>
