@@ -1,43 +1,67 @@
-import { Link, Navigate, Route, Routes } from 'react-router-dom';
+import logo from './logo.svg';
 import { useState, useEffect } from 'react';
+import { Routes, Route, Link, useNavigate } from 'react-router-dom'
+import Login from './Pages/LogIn';
 import api from './lib/api'
 import Card from './Components/CardProduct/index';
-import './App.scss';
 import Product from './Pages/Product';
-
+import './App.css';
 
 
 function App() {
+
+  const [hideLogin, setHideLogin] = useState(true)
   const [allProducts, setAllProducts] = useState({})
 
-    useEffect(async () => {
-        let data = await api.getAllProducts()
-        setAllProducts(data)
-        console.log(data)
-    },[])
+  useEffect(async () => {
+    let data = await api.getAllProducts()
+    const token = localStorage.getItem('token')
+    setAllProducts(data)
+    console.log(data)
+},[])
+
+  const changeHideLogin = () => {
+    setHideLogin(!hideLogin)
+  }
+
+  
   
 
 
 
   return (
     <div className="App">
-      <main>
+      <nav className="navbar navbar-light bg-light shadow p-3 mb-5 bg-body rounded">
+        <div className="container-fluid">
+        <Link to='/' className='nav-link'>
+        <a className="navbar-brand" >Market Koder</a>
+        </Link>
+        <Link to='/' className='nav-link'>
+                Productos
+              </Link>
+        <form className="d-flex">
+          <Link to='/login' className='nav-link'>
+            {hideLogin &&
+            <button className="btn btn-outline-success" type="submit" onClick={changeHideLogin}>Log In</button>
+             }            
+          </Link>
+        </form>
+        </div>
+      </nav>
       <div className="container">
-        <div className="row">
-          <div className="col-3">
-          <Link to='/' className='nav-link'>
-                  Productos
-                </Link>
-          </div>
+      <div className="row">
+        <div className="col-3">
+        
         </div>
       </div>
-      </main>
-          <Routes>
-            <Route path="/" element={<Product/>}/>
-          </Routes>
     </div>
+      <Routes>
+        <Route path='/login' element={<Login/>} />
+        <Route path="/" element={<Product/>}/>
+      </Routes>
 
-  );
+    </div>
+  )
 }
 
 export default App;
