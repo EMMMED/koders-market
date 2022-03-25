@@ -1,19 +1,20 @@
 import { Button, ButtonGroup } from 'reactstrap'
 
-const FilterbyCategorie = () => {
+const FilterbyCategorie = props => {
 
     return (
         <ButtonGroup className='d-flex flex-column'>
-            <Button className='bg-primary mb-1'>
+            <h3>Categorias</h3>
+            <Button name='category' onClick value='alimento' className='bg-primary mb-1'>
                 Alimento
             </Button>
-            <Button className='bg-primary mb-1'>
+            <Button name='category' onClick value='bebidas' className='bg-primary mb-1'>
                 Bebidas
             </Button>
-            <Button className='bg-primary mb-1'>
+            <Button name='category' onClick value='electronicos' className='bg-primary mb-1'>
                 Electronicos
             </Button>
-            <Button className='bg-primary'>
+            <Button name='category' onClick value='rubberDuck' className='bg-primary'>
                 Rubber Ducks
             </Button>
         </ButtonGroup>

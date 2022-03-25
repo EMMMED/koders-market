@@ -1,6 +1,10 @@
-const FilterByName = () => {
+import { useState } from "react"
+
+const FilterByName = props => {
+
+    const {inputHandler} = props
     return  (
-        <input type="text" placeholder="Buscar..." className=" my-1 w-100 p-2"></input>
+        <input type="text" onChange={inputHandler} placeholder="Buscar..." className=" my-1 w-100 p-2"></input>
     )  
    }
 
