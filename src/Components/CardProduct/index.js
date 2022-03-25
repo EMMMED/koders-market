@@ -1,6 +1,7 @@
 const Card = props => {
-    const {addProductMarket, inputData, token} = props
+    const {addProductMarket, inputData, token, addShoppingCar} = props
     const {image, name, resume, cost, category, productId} = props.productData
+    console.log(addShoppingCar)
     return (
         <div className="card mb-3 shadow p-3 mb-5 bg-body rounded-3">
         <div className="row g-0">

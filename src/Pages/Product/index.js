@@ -3,7 +3,7 @@ import api from '../../lib/api'
 import Card from '../../Components/CardProduct'
 
 const Product = props => {
-    const {token} = props
+    const {token, addShoppingCar} = props
     // coleccion de Products
     const [allProducts, setAllProducts] = useState({})
     const [productMarket, setProductMarket] = useState({})
@@ -43,6 +43,7 @@ const Product = props => {
                         addProductMarket={addProductMarket}
                         inputData={inputData}
                         token={token}
+                        addShoppingCar={addShoppingCar}
                         />
                     })
                 }

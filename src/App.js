@@ -3,8 +3,9 @@ import { useState, useEffect } from 'react';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom'
 import Login from './Pages/LogIn';
 import api from './lib/api'
-import Card from './Components/CardProduct/index';
+import Card from './Components/CardProduct';
 import Product from './Pages/Product';
+import Market from './Components/Market'
 import './App.scss';
 
 
@@ -13,6 +14,7 @@ function App() {
   const [hideLogin, setHideLogin] = useState(true)
   const [allProducts, setAllProducts] = useState({})
   const [token, setToken] = useState('')
+  const [shoppingCar, setShoppingCar] = useState([])
 
   useEffect(async () => {
     let data = await api.getAllProducts()
@@ -26,7 +28,9 @@ function App() {
     setHideLogin(!hideLogin)
   }
 
-  
+  const addShoppingCar = (item) => {
+    setShoppingCar([...shoppingCar, item])
+  }
   
 
 
@@ -53,13 +57,14 @@ function App() {
       <div className="container">
       <div className="row">
         <div className="col-3">
-        
+             <Market />
+
         </div>
       </div>
     </div>
       <Routes>
         <Route path='/login' element={<Login/>} />
-        <Route path="/" element={<Product token={token}/>}/>
+        <Route path="/" element={<Product token={token} addShoppingCar={addShoppingCar}/>}/>
       </Routes>
 
     </div>
